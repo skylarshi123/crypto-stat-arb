@@ -1,0 +1,35 @@
+{
+  "strategy_performance": {
+    "holding_period_hours": 24,
+    "total_return": 0.3433318752227979,
+    "annualized_return": 6.265806722816062,
+    "annualized_volatility": 0.6345408970651013,
+    "sharpe_ratio": 9.874551430485994,
+    "max_drawdown": -0.08237329185227615,
+    "win_rate": 0.7272727272727273,
+    "avg_trade_return": 0.015605994328308996,
+    "num_trades": 22,
+    "trading_days": 20
+  },
+  "benchmark_comparison": {
+    "benchmark_annualized_return": 0.03426326484829227,
+    "alpha": 0.31758413803738844,
+    "annualized_alpha": 6.100958441244567,
+    "beta": 9.142857142857142,
+    "outperformance": 0.3405157164681437
+  },
+  "data_analysis": {
+    "total_data_points": 2884,
+    "analysis_period_days": 20,
+    "trades_per_day": 1.1,
+    "signal_rate": null
+  },
+  "resume_bullets": {
+    "sharpe_ratio": "9.9",
+    "annualized_return": "626.6%",
+    "win_rate": "72.7%",
+    "max_drawdown": "8.2%",
+    "total_data_points": "2,884",
+    "num_trades": 22
+  }
+}
