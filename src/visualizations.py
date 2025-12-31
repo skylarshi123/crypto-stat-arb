@@ -159,7 +159,11 @@ class StrategyVisualizer:
         ax1.plot(trades_df['entry_time'], trades_df['running_max'] * 100, 
                 color='#4169E1', linewidth=2, linestyle='--', alpha=0.8, label='Running Maximum')
         
-        ax1.set_title('Strategy Performance with Drawdown Analysis', 
+        # Find maximum drawdown first for title
+        max_dd_idx = trades_df['drawdown_pct'].idxmin()
+        max_dd_value = trades_df.loc[max_dd_idx, 'drawdown_pct']
+        
+        ax1.set_title(f'Strategy Performance with Drawdown Analysis (Max DD: {abs(max_dd_value):.1f}%)', 
                      fontsize=self.chart_params['title_size'], fontweight='bold')
         ax1.set_ylabel('Return (%)', fontsize=self.chart_params['label_size'])
         ax1.grid(True, alpha=self.chart_params['grid_alpha'])
@@ -170,17 +174,6 @@ class StrategyVisualizer:
                         color='#DC143C', alpha=0.7, label='Drawdown')
         ax2.plot(trades_df['entry_time'], trades_df['drawdown_pct'], 
                 color='#8B0000', linewidth=1.5)
-        
-        # Find and annotate maximum drawdown
-        max_dd_idx = trades_df['drawdown_pct'].idxmin()
-        max_dd_date = trades_df.loc[max_dd_idx, 'entry_time']
-        max_dd_value = trades_df.loc[max_dd_idx, 'drawdown_pct']
-        
-        ax2.annotate(f'Max DD: {max_dd_value:.1f}%', 
-                    xy=(max_dd_date, max_dd_value),
-                    xytext=(max_dd_date, max_dd_value - 2),
-                    arrowprops=dict(arrowstyle='->', color='red'),
-                    fontsize=10, ha='center')
         
         ax2.set_xlabel('Date', fontsize=self.chart_params['label_size'])
         ax2.set_ylabel('Drawdown (%)', fontsize=self.chart_params['label_size'])
