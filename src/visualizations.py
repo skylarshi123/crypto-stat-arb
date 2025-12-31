@@ -108,17 +108,18 @@ class StrategyVisualizer:
         ax.xaxis.set_major_locator(mdates.DayLocator(interval=2))
         plt.setp(ax.xaxis.get_majorticklabels(), rotation=45)
         
-        # Add grid and legend
+        # Add grid and legend with better positioning
         ax.grid(True, alpha=self.chart_params['grid_alpha'])
-        ax.legend(loc='upper left', fontsize=self.chart_params['tick_size'])
+        ax.legend(loc='upper left', framealpha=0.95, fontsize=10)
         
-        # Add performance annotations
+        # Add performance annotations in upper right to avoid overlap
         final_value = trades_df['cumulative_value'].iloc[-1]
         total_return = (final_value - 1) * 100
         
-        ax.text(0.02, 0.98, f'Total Return: {total_return:.1f}%\nFinal Value: ${final_value:.3f}', 
+        ax.text(0.98, 0.98, f'Total Return: {total_return:.1f}%\nFinal Value: ${final_value:.3f}', 
                 transform=ax.transAxes, fontsize=11, verticalalignment='top',
-                bbox=dict(boxstyle='round', facecolor='white', alpha=0.8))
+                horizontalalignment='right',
+                bbox=dict(boxstyle='round', facecolor='white', alpha=0.9, edgecolor='gray'))
         
         # Tight layout and save
         plt.tight_layout()
