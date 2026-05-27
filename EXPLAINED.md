@@ -136,13 +136,14 @@ crypto-stat-arb/
 
 ### The Most Important File: `state/positions.json`
 
-This file is how the bot "remembers" what it's doing between runs. Here's what
-it looks like when we have one open position:
+This file is how the bot "remembers" what it's doing between runs. Here's a
+realistic example after a few weeks of paper trading with 5 closed trades and
+1 still open:
 
 ```json
 {
   "paper_cash": 10000.0,
-  "paper_pnl": 47.32,
+  "paper_pnl": 4.73,
   "positions": {
     "ETH/USD": {
       "entry_price": 3421.50,
@@ -159,16 +160,79 @@ it looks like when we have one open position:
       "exit_price":  96100,
       "net_return": 0.0182,
       "pnl_usd": 1.82
+    },
+    {
+      "symbol": "SOL/USD",
+      "entry_time": "2026-05-19T14:00:00+00:00",
+      "exit_time":  "2026-05-20T14:00:00+00:00",
+      "entry_price": 172.40,
+      "exit_price":  175.10,
+      "net_return": 0.0117,
+      "pnl_usd": 1.17
+    },
+    {
+      "symbol": "AVAX/USD",
+      "entry_time": "2026-05-20T11:00:00+00:00",
+      "exit_time":  "2026-05-21T11:00:00+00:00",
+      "entry_price": 38.20,
+      "exit_price":  39.60,
+      "net_return": 0.0226,
+      "pnl_usd": 2.26
+    },
+    {
+      "symbol": "BTC/USD",
+      "entry_time": "2026-05-21T02:00:00+00:00",
+      "exit_time":  "2026-05-22T02:00:00+00:00",
+      "entry_price": 96800,
+      "exit_price":  96330,
+      "net_return": -0.0089,
+      "pnl_usd": -0.89
+    },
+    {
+      "symbol": "ETH/USD",
+      "entry_time": "2026-05-21T07:00:00+00:00",
+      "exit_time":  "2026-05-22T07:00:00+00:00",
+      "entry_price": 3390.00,
+      "exit_price":  3427.50,
+      "net_return": 0.0071,
+      "pnl_usd": 0.37
     }
   ]
 }
 ```
 
-Plain English translation:
-- We have $10,000 of starting paper money
-- We've made $47.32 in fake profit so far
-- We currently hold ETH — we bought at $3,421.50 at 4 PM on May 20th
-- We've closed 1 trade so far (a BTC trade that made $1.82)
+**Plain English translation of every field:**
+
+`paper_cash: 10000.0`
+→ Your **starting** fake balance. This number **never changes** — it's just a
+reference point so you know what you started with. In paper mode the bot doesn't
+actually "spend" money when it buys, so this stays at 10,000 forever.
+
+`paper_pnl: 4.73`
+→ **Running total of profit/loss from all closed trades.**
+You can verify it yourself: 1.82 + 1.17 + 2.26 + (-0.89) + 0.37 = **4.73** ✓
+This is the number that tells you if the strategy is actually working.
+
+`positions: { "ETH/USD": ... }`
+→ **What the bot currently "owns" right now (not yet closed).**
+We bought ETH at $3,421.50 on May 20th at 4 PM. It's still open — we haven't
+hit the 24-hour exit yet. This trade is NOT counted in paper_pnl yet, because
+we don't know the outcome until we close it.
+
+`closed_trades: [...]`
+→ **The complete history of every finished trade**, win or loss. Each entry
+shows which coin, when we bought, when we sold, at what prices, and the P&L.
+The paper_pnl number is always exactly the sum of all the pnl_usd values here.
+
+**How much money goes into each trade?**
+→ **$100 per position, by default.** This is hardcoded as `POSITION_SIZE = 100`
+in `live_trader.py`. You can change it at runtime:
+```bash
+python src/live_trader.py --size 250   # $250 per position
+```
+Since we watch 4 coins, the worst case is 4 simultaneous open positions = $400
+total "at risk" at any one time. The bot never "runs out" of paper money — it
+just independently tracks the P&L from each $100 trade.
 
 Every time the bot runs, it reads this file, does its work, and writes it back
 with any updates.

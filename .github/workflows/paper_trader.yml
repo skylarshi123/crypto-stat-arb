@@ -48,6 +48,9 @@ jobs:
         #   KRAKEN_API_SECRET: ${{ secrets.KRAKEN_API_SECRET }}
 
       - name: Save state and logs back to repo
+        # Run this even if the trader script failed, so the error log gets
+        # committed and you can see what went wrong in the file history.
+        if: always()
         run: |
           git config --global user.email "paper-trader[bot]@users.noreply.github.com"
           git config --global user.name "Paper Trader Bot"
