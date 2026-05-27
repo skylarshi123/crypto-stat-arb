@@ -4,3 +4,8 @@ __pycache__/
 PROJECT_SPEC.md
 *.pyc
 .DS_Store
+
+# Keep state and logs tracked (GitHub Actions commits them back)
+# Uncomment these only if you switch to a different persistence method:
+# state/positions.json
+# logs/trader.log

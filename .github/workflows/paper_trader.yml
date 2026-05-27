@@ -1,0 +1,46 @@
+name: Paper Trader (Hourly)
+
+on:
+  schedule:
+    # Runs at the top of every hour, 24/7
+    # GitHub Actions uses UTC. Adjust if you want specific hours only.
+    - cron: "0 * * * *"
+
+  # Lets you trigger a manual run from the GitHub Actions UI
+  workflow_dispatch:
+
+jobs:
+  trade:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repo (with state file)
+        uses: actions/checkout@v4
+        with:
+          # Fetch full history so we can commit state back
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: "pip"
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Run paper trader
+        run: python src/live_trader.py
+        # For live trading later, use:
+        # run: python src/live_trader.py --live
+        # env:
+        #   KRAKEN_API_KEY: ${{ secrets.KRAKEN_API_KEY }}
+        #   KRAKEN_API_SECRET: ${{ secrets.KRAKEN_API_SECRET }}
+
+      - name: Commit updated state back to repo
+        run: |
+          git config --global user.email "paper-trader[bot]@users.noreply.github.com"
+          git config --global user.name "Paper Trader Bot"
+          git add state/positions.json logs/trader.log
+          git diff --staged --quiet || git commit -m "chore: update trading state [skip ci]"
+          git push
