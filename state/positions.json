@@ -1,7 +1,13 @@
 {
   "paper_cash": 10000.0,
   "paper_pnl": -9.435877479356906,
-  "positions": {},
+  "positions": {
+    "ETH/USD": {
+      "entry_price": 1644.63,
+      "entry_time": "2026-06-23T08:00:00+00:00",
+      "size_usd": 100.0
+    }
+  },
   "closed_trades": [
     {
       "symbol": "SOL/USD",
