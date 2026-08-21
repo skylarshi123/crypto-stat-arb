@@ -1,7 +1,18 @@
 {
   "paper_cash": 10000.0,
   "paper_pnl": -5.641852625059471,
-  "positions": {},
+  "positions": {
+    "SOL/USD": {
+      "entry_price": 91.27,
+      "entry_time": "2026-08-21T09:00:00+00:00",
+      "size_usd": 100.0
+    },
+    "AVAX/USD": {
+      "entry_price": 7.519,
+      "entry_time": "2026-08-21T09:00:00+00:00",
+      "size_usd": 100.0
+    }
+  },
   "closed_trades": [
     {
       "symbol": "SOL/USD",
