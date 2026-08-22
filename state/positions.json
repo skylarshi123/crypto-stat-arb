@@ -1,17 +1,7 @@
 {
   "paper_cash": 10000.0,
-  "paper_pnl": -5.641852625059471,
+  "paper_pnl": -1.8788299079700779,
   "positions": {
-    "SOL/USD": {
-      "entry_price": 91.27,
-      "entry_time": "2026-08-21T09:00:00+00:00",
-      "size_usd": 100.0
-    },
-    "AVAX/USD": {
-      "entry_price": 7.519,
-      "entry_time": "2026-08-21T09:00:00+00:00",
-      "size_usd": 100.0
-    },
     "ETH/USD": {
       "entry_price": 2418.32,
       "entry_time": "2026-08-22T05:00:00+00:00",
@@ -83,6 +73,28 @@
       "size_usd": 100.0,
       "net_return": 0.031908,
       "pnl_usd": 3.1908,
+      "mode": "paper"
+    },
+    {
+      "symbol": "SOL/USD",
+      "entry_time": "2026-08-21T09:00:00+00:00",
+      "exit_time": "2026-08-22T09:22:27.205785+00:00",
+      "entry_price": 91.27,
+      "exit_price": 94.5,
+      "size_usd": 100.0,
+      "net_return": 0.03139,
+      "pnl_usd": 3.139,
+      "mode": "paper"
+    },
+    {
+      "symbol": "AVAX/USD",
+      "entry_time": "2026-08-21T09:00:00+00:00",
+      "exit_time": "2026-08-22T09:22:27.205785+00:00",
+      "entry_price": 7.519,
+      "exit_price": 7.596,
+      "size_usd": 100.0,
+      "net_return": 0.006241,
+      "pnl_usd": 0.6241,
       "mode": "paper"
     }
   ]
