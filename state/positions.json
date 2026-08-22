@@ -11,6 +11,11 @@
       "entry_price": 7.519,
       "entry_time": "2026-08-21T09:00:00+00:00",
       "size_usd": 100.0
+    },
+    "ETH/USD": {
+      "entry_price": 2418.32,
+      "entry_time": "2026-08-22T05:00:00+00:00",
+      "size_usd": 100.0
     }
   },
   "closed_trades": [
