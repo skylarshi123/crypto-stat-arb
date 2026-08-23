@@ -1,13 +1,7 @@
 {
   "paper_cash": 10000.0,
-  "paper_pnl": -1.8788299079700779,
-  "positions": {
-    "ETH/USD": {
-      "entry_price": 2418.32,
-      "entry_time": "2026-08-22T05:00:00+00:00",
-      "size_usd": 100.0
-    }
-  },
+  "paper_pnl": -3.761263994443347,
+  "positions": {},
   "closed_trades": [
     {
       "symbol": "SOL/USD",
@@ -95,6 +89,17 @@
       "size_usd": 100.0,
       "net_return": 0.006241,
       "pnl_usd": 0.6241,
+      "mode": "paper"
+    },
+    {
+      "symbol": "ETH/USD",
+      "entry_time": "2026-08-22T05:00:00+00:00",
+      "exit_time": "2026-08-23T05:24:20.410879+00:00",
+      "entry_price": 2418.32,
+      "exit_price": 2382.47,
+      "size_usd": 100.0,
+      "net_return": -0.018824,
+      "pnl_usd": -1.8824,
       "mode": "paper"
     }
   ]
