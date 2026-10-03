@@ -1,13 +1,7 @@
 {
   "paper_cash": 10000.0,
-  "paper_pnl": -3.761263994443347,
-  "positions": {
-    "AVAX/USD": {
-      "entry_price": 10.529,
-      "entry_time": "2026-10-02T18:00:00+00:00",
-      "size_usd": 100.0
-    }
-  },
+  "paper_pnl": 1.356828891870638,
+  "positions": {},
   "closed_trades": [
     {
       "symbol": "SOL/USD",
@@ -106,6 +100,17 @@
       "size_usd": 100.0,
       "net_return": -0.018824,
       "pnl_usd": -1.8824,
+      "mode": "paper"
+    },
+    {
+      "symbol": "AVAX/USD",
+      "entry_time": "2026-10-02T18:00:00+00:00",
+      "exit_time": "2026-10-03T20:32:17.541532+00:00",
+      "entry_price": 10.529,
+      "exit_price": 11.11,
+      "size_usd": 100.0,
+      "net_return": 0.051181,
+      "pnl_usd": 5.1181,
       "mode": "paper"
     }
   ]
